@@ -22,6 +22,12 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     backgroundColor:'#ced2d8',
     useContentSize: true,
+    webPreferences: {
+      webSecurity:false,
+      spellcheck: true,
+      nodeIntegration: true,
+      nodeIntegrationInWorker: true
+    }
   })
 
   mainWindow.loadURL(winURL)

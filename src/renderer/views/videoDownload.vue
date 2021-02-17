@@ -2,18 +2,7 @@
   <CContainer>
     <CNavbar expandable="md" type="dark" color="danger">
       <CNavbarBrand href="#">YT Download & Merge </CNavbarBrand>
-      <CHeaderNavItem class="d-md-down-none mx-2">
-        <CHeaderNavLink>
-          <CButton @click="minimise">
-            <CIcon name="cilMinus" />
-          </CButton>
-        </CHeaderNavLink>
-      </CHeaderNavItem>
-      <CHeaderNavItem class="d-md-down-none mx-2">
-        <CButton @click="close">
-          <CIcon name="cilXCircle" />
-        </CButton>
-      </CHeaderNavItem>
+
     </CNavbar>
    
         <CCard>
@@ -96,12 +85,7 @@ export default {
     };
   },
   methods: {
-    close() {
-      this.$electron.remote.BrowserWindow.getFocusedWindow().close();
-    },
-    minimise() {
-      this.$electron.remote.BrowserWindow.getFocusedWindow().minimize();
-    },
+    
     handleDownload() {
       var urlList = this.urls.split(",");
       var UniqueUrlList = urlList.filter(

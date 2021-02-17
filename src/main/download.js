@@ -1,6 +1,7 @@
 import { ipcMain } from "electron";
 const fs = require("fs");
-const ytdl = require("ytdl-core");
+//const ytdl = require("ytdl-core");
+const ytdl = require('youtube-dl');
 const ffmpeg = require("ffmpeg-static");
 const path = require("path");
 const exec = require("child_process").exec;
@@ -31,8 +32,7 @@ async function mergeVideos(e, inputVideos, pathToMerged) {
   ffmpeger = inputVideos
     .map(
       (video) =>
-        `${ffmpeg} -y -i ${video} -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate/${
-          path.parse(video).name
+        `${ffmpeg} -y -i ${video} -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate/${path.parse(video).name
         }.ts `
     )
     .join("&&");
@@ -54,6 +54,7 @@ async function mergeVideos(e, inputVideos, pathToMerged) {
 }
 
 function downloadAll(e, urlList, performMerge) {
+
   var videoList = [];
   var downloadComplete = 0;
   urlList.forEach((item) => {
@@ -88,7 +89,7 @@ ipcMain.on("download-all", (e, data) => {
   vidList = [];
   var cleanUrlList = data.urlList
     .map((url) => {
-      var videoId = ytdl.getURLVideoID(url);
+      var videoId = "abc";//ytdl.getURLVideoID(url);
       var videoPath = pathToAll + `${videoId}.mp4`;
       vidList.push(videoPath);
       if (!fs.existsSync(videoPath)) {
